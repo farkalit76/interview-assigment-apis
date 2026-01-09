@@ -46,5 +46,28 @@ Actuator URL: http://localhost:8080/actuator/mappings
 Api-docs URL: http://localhost:8080/v3/api-docs
 
 
+### Run on Docker
+
+Before building image just change these two lines in the application properties file
+->spring.datasource.company.url=${datasource_url:jdbc:postgresql://host.docker.internal:5432/companydb?reWriteBatchedInserts=true}
+->spring.data.redis.host=host.docker.internal
+It is required to call these server from my localhost & port.
+
+
+#### Build Docker image
+docker build -t interview-assignment .
+
+#### Run Container
+docker run -p 9090:8080 interview-assignment
+
+#Test the application using URL -> http://localhost:9090/
+
+
+### To kill the running port
+Find->netstat -ano | findstr :8080
+Kill->taskkill /PID 12345 /F
+
+
+
 
 
